@@ -16,7 +16,7 @@ public class MemoController {
     private final MemoService memoService;
 
     @PostMapping("/api/memos")
-    public Memo createMemo(MemoRequestDto requestDto) {
+    public Memo createMemo(@RequestBody MemoRequestDto requestDto) {
         Memo memo = new Memo(requestDto);
         return memoRepository.save(memo);
     }
@@ -27,8 +27,8 @@ public class MemoController {
     }
 
     @DeleteMapping("/api/memos/{id}")
-    public Long deleteMemo(@PathVariable Long id){
+    public Long deleteMemo(@PathVariable Long id) {
         memoRepository.deleteById(id);
+        return id;
     }
-
 }
